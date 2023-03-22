@@ -1,14 +1,9 @@
 import { useState } from 'react'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-function Home(){
-    return (
-    
-    <h1>O que eu quiser</h1>
-    
-    );
-};
+import Carousel from '../components/Carousel/Carousel';
+import Home from './Home/Home'
+import './_app'
 
 
 

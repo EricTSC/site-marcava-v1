@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    background-color: #000;
+    font-family: monospace;
+}
+
+.conteiner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.screenCarousel {
+    height: 75%;
+    width: 75vw;
+}
