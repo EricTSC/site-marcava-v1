@@ -2,7 +2,7 @@ import { useState } from 'react'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Carousel from '../../components/Carousel/Carousel';
-
+import Navbar from '../../components/Navbar/Navbar'
 
 function Home() {
     const slides = [
@@ -13,9 +13,10 @@ function Home() {
 
     return (
         <>
-
+            
             <section className='conteiner'>
                 <h1>Carrossel</h1>
+                <Navbar />
                 <div className='screenCarousel'>
                     <Carousel slides={slides} />
                 </div>

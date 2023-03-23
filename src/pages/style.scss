@@ -6,6 +6,13 @@
     font-family: monospace;
 }
 
+:root {
+    --mainColor: #29335c;
+    --mainColor: #4f5c90;
+    --secundaryColor: #DB2B39;
+    --textColor: #fff;
+}
+
 .conteiner {
     height: 100vh;
     display: flex;
@@ -13,6 +20,15 @@
     justify-content: center;
     flex-direction: column;
     gap: 15px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 2rem;
+    background-color: var(--mainColor);
 }
 
 .screenCarousel {
