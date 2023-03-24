@@ -2,7 +2,7 @@ import { useState } from 'react'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Carousel from '../../components/Carousel/Carousel';
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../components/Navbar'
 
 function Home() {
     const slides = [
@@ -12,17 +12,16 @@ function Home() {
     ];
 
     return (
-        <>
-            
+        <React.Fragment>
+
             <section className='conteiner'>
-                <h1>Carrossel</h1>
-                <Navbar />
+                    <Navbar />
                 <div className='screenCarousel'>
                     <Carousel slides={slides} />
                 </div>
             </section>
 
-        </>
+        </React.Fragment>
     );
 };
 
