@@ -1,29 +1,26 @@
-import { useState } from 'react'
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Carousel from '../../components/Carousel/Carousel';
-import Navbar from '../../components/Navbar'
+import { useState } from "react";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Carousel from "../../components/Carousel/Carousel";
+import Navbar from "../../components/NavbarV2";
 
 function Home() {
-    const slides = [
-        { url: 'https://images.unsplash.com/photo-1553615738-d8e0829f1d61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80', title: 'Foto 01' },
-        { url: 'https://i.pinimg.com/originals/09/6a/35/096a35453660aa9b83ba4ab6d9182d61.jpg', title: 'Foto 02' },
-        { url: 'https://c4.wallpaperflare.com/wallpaper/108/140/869/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-thumb.jpg', title: 'Foto 03' },
-    ];
+  const slides = [
+    { url: "http://localhost:3000/images/MVC_2222.jpg", title: "Foto 01" },
+    { url: "http://localhost:3000/images/MVC_3880.jpg", title: "Foto 02" },
+    { url: "http://localhost:3000/images/MVC_4099.jpg", title: "Foto 03" },
+  ];
 
-    return (
-        <React.Fragment>
+  return (
+    <React.Fragment>
+      <section className="conteiner">
+        <div className="screenCarousel">
+          <Navbar />
+          <Carousel slides={slides} />
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
 
-            <section className='conteiner'>
-                    <Navbar />
-                <div className='screenCarousel'>
-                    <Carousel slides={slides} />
-                </div>
-            </section>
-
-        </React.Fragment>
-    );
-};
-
-
-export default Home
+export default Home;

@@ -1,5 +1,7 @@
 import React from 'react';
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { clearTimeout , clearInterval } from 'timers';
+import { setInterval } from 'timers/promises';
 
 const slideStyles = {
   width: "100%",
@@ -13,8 +15,8 @@ const rightArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
-  right: "32px",
-  fontSize: "45px",
+  right: "15px",
+  fontSize: "25px",
   color: "#fff",
   zIndex: 1,
   cursor: "pointer",
@@ -24,8 +26,8 @@ const leftArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
-  left: "32px",
-  fontSize: "45px",
+  left: "15px",
+  fontSize: "25px",
   color: "#fff",
   zIndex: 1,
   cursor: "pointer",
@@ -36,9 +38,10 @@ const sliderStyles = {
   height: "100%",
 };
 
+/*
 const dotsContainerStyles = {
   display: "flex",
-  justifyContent: "center",
+  'justify-content': 'center'
 };
 
 const dotStyle = {
@@ -47,18 +50,31 @@ const dotStyle = {
   fontSize: "20px",
 };
 
+      <div style={dotsContainerStyles}>
+        {slides.map((slide, slideIndex) => (
+          <div
+            style={dotStyle}
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+          >
+            ●
+          </div>
+
+*/
+
 const Carousel = ({ slides }) => {
+  const timerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const isLastSlide = currentIndex === slides.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex, slides]);
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
@@ -66,6 +82,17 @@ const Carousel = ({ slides }) => {
     ...slideStyles,
     backgroundImage: `url(${slides[currentIndex].url})`,
   };
+
+  useEffect(() => {
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      goToNext();
+    }, 5000);
+
+    return () => window.clearTimeout(timerRef.current);
+  }, [goToNext]);
 
   return (
     <div style={sliderStyles}>
@@ -78,18 +105,12 @@ const Carousel = ({ slides }) => {
         </div>
       </div>
       <div style={slideStylesWidthBackground}></div>
-      <div style={dotsContainerStyles}>
-        {slides.map((slide, slideIndex) => (
-          <div
-            style={dotStyle}
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-          >
-            ●
-          </div>
-        ))}
       </div>
-    </div>
+
+          
+
+
+
   );
 };
 
