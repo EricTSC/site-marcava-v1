@@ -8,7 +8,7 @@ const MENU_LIST = [
   { text: "Ínicio", href: "/" },
   { text: "Quem somos", href: "/" },
   { text: "O que fazemos", href: "/" },
-  { text: "Catálogo", href: "/" },
+  { text: "Catálogo", href: "http://bit.ly/412485V" },
 ];
 const Navbar = () => {
   const [navActive, setNavActive] = useState(null);
