@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import logo from "../../../public/images/LogoMarcava.png";
 
 function Inicio() {
   return (
@@ -16,6 +18,7 @@ function Inicio() {
           including versions of Lorem Ipsum.
         </p>
       </div>
+
     </>
   );
 }

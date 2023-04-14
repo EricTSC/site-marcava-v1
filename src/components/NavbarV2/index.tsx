@@ -6,7 +6,7 @@ import logo from '../../../public/images/logo.svg'
 
 const MENU_LIST = [
   { text: "Ínicio", href: "/" },
-  { text: "Quem somos", href: "/" },
+  { text: "Quem somos", href: "/quemsomos" },
   { text: "O que fazemos", href: "/" },
   { text: "Catálogo", href: "http://bit.ly/412485V" },
 ];

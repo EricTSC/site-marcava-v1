@@ -1,12 +1,9 @@
-import React from 'react';
 import { useCallback, useEffect, useRef, useState } from "react";
-import { clearTimeout , clearInterval } from 'timers';
-import { setInterval } from 'timers/promises';
 
 const slideStyles = {
   width: "100%",
   height: "100%",
-  borderRadius: "0px",
+  borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
 };
@@ -15,7 +12,7 @@ const rightArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
-  right: "15px",
+  right: "32px",
   fontSize: "25px",
   color: "#fff",
   zIndex: 1,
@@ -26,7 +23,7 @@ const leftArrowStyles = {
   position: "absolute",
   top: "50%",
   transform: "translate(0, -50%)",
-  left: "15px",
+  left: "32px",
   fontSize: "25px",
   color: "#fff",
   zIndex: 1,
@@ -36,12 +33,12 @@ const leftArrowStyles = {
 const sliderStyles = {
   position: "relative",
   height: "100%",
+  width: "100%"
 };
 
-/*
 const dotsContainerStyles = {
   display: "flex",
-  'justify-content': 'center'
+  justifyContent: "center",
 };
 
 const dotStyle = {
@@ -50,19 +47,18 @@ const dotStyle = {
   fontSize: "20px",
 };
 
-      <div style={dotsContainerStyles}>
-        {slides.map((slide, slideIndex) => (
-          <div
-            style={dotStyle}
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-          >
-            ●
-          </div>
+const slidesContainerStyles = {
+  display: "flex",
+  height: "100%",
+  transition: "transform ease-out 0.5s",
+};
 
-*/
+const slidesContainerOverflowStyles = {
+  overflow: "hidden",
+  height: "100%"
+};
 
-const Carousel = ({ slides }) => {
+const ImageSlider = ({ slides, parentWidth }) => {
   const timerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
@@ -78,35 +74,61 @@ const Carousel = ({ slides }) => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
-  const slideStylesWidthBackground = {
+  const getSlideStylesWithBackground = (slideIndex) => ({
     ...slideStyles,
-    backgroundImage: `url(${slides[currentIndex].url})`,
-  };
+    backgroundImage: `url(${slides[slideIndex].url})`,
+    width: `${parentWidth}px`,
+  });
+  const getSlidesContainerStylesWithWidth = () => ({
+    ...slidesContainerStyles,
+    width: parentWidth * slides.length,
+    transform: `translateX(${-(currentIndex * parentWidth)}px)`,
+  });
 
   useEffect(() => {
     if (timerRef.current) {
-      window.clearTimeout(timerRef.current);
+      clearTimeout(timerRef.current);
     }
     timerRef.current = setTimeout(() => {
       goToNext();
-    }, 5000);
+    }, 4000);
 
-    return () => window.clearTimeout(timerRef.current);
+    return () => clearTimeout(timerRef.current);
   }, [goToNext]);
 
- return (
+  return (
     <div style={sliderStyles}>
       <div>
         <div onClick={goToPrevious} style={leftArrowStyles}>
-          
+          ❰
         </div>
         <div onClick={goToNext} style={rightArrowStyles}>
-          
+          ❱
         </div>
       </div>
-      <div style={slideStylesWidthBackground}></div>
+      <div style={slidesContainerOverflowStyles}>
+        <div style={getSlidesContainerStylesWithWidth()}>
+          {slides.map((_, slideIndex) => (
+            <div
+              key={slideIndex}
+              style={getSlideStylesWithBackground(slideIndex)}
+            ></div>
+          ))}
+        </div>
       </div>
- ); 
+      <div style={dotsContainerStyles}>
+        {slides.map((slide, slideIndex) => (
+          <div
+            style={dotStyle}
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+          >
+            ●
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-export default Carousel;
+export default ImageSlider;

@@ -7,9 +7,9 @@ import Inicio from "../../components/Inicio";
 
 function Home() {
   const slides = [
-    { url: "https://site-marcava.vercel.app/images/MVC_2222.jpg", title: "Foto 01" },
-    { url: "https://site-marcava.vercel.app/images/MVC_3880.jpg", title: "Foto 02" },
-    { url: "https://site-marcava.vercel.app/images/MVC_4099.jpg", title: "Foto 03" },
+    { url: "http://localhost:3000/images/MVC_2222.jpg", title: "Foto 01" },
+    { url: "http://localhost:3000/images/MVC_3880.jpg", title: "Foto 02" },
+    { url: "http://localhost:3000/images/MVC_4099.jpg", title: "Foto 03" },
   ];
 
   return (
@@ -19,7 +19,7 @@ function Home() {
           <Navbar />
           <Inicio />
           <Carousel slides={slides} />
-
+          
         </div>
       </section>
     </React.Fragment>
