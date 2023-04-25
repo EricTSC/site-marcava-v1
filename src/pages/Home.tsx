@@ -1,9 +1,7 @@
-import { useState } from "react";
 import React from "react";
-import ReactDOM from "react-dom/client";
-import Carousel from "../../components/Carousel/Carousel";
-import Navbar from "../../components/NavbarV2";
-import Inicio from "../../components/Inicio";
+import Carousel from "../components/Carousel/Carousel";
+import Navbar from "../components/NavbarV2";
+import Inicio from "../components/Inicio";
 
 function Home() {
   const slides = [

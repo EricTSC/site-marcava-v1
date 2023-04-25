@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/NavbarV2";
 import ImageSlider from "../components/ImageSlider/ImageSlider";
+import { useEffect } from "react";
 
 function QuemSomos() {
   const slides = [
@@ -9,21 +10,30 @@ function QuemSomos() {
     { url: "http://localhost:3000/images/MVC_4099.jpg", title: "Foto 03" },
   ];
 
+  var userScreenWidth = 500;
+
+  useEffect(() => {
+    userScreenWidth = window.innerWidth;
+  }, []);
+  
+  console.log(userScreenWidth);
+
   const containerStyles = {
-    width: "698",
+    width: "750",
     height: "50vh",
     margin: "0 auto",
   };
 
+  containerStyles.width = userScreenWidth;
+
   return (
     <React.Fragment>
       <Navbar />
-      <div style={containerStyles}>
-        <ImageSlider slides={slides} parentWidth={containerStyles.width} />
-      </div>
-
       <section className="conteiner">
         <div className="screenCarousel">
+          <div style={containerStyles}>
+            <ImageSlider slides={slides} parentWidth={containerStyles.width} />
+          </div>
           <div className="Textos">
             <h1>Quem somos</h1>
             <p>
